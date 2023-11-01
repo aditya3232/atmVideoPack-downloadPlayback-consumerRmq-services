@@ -54,7 +54,7 @@ func (r *repository) DelOneMonthOldLogs() error {
 		}
 
 		// Delete documents using DeleteByQuery
-		_, err = r.elasticsearch.DeleteByQuery([]string{"status_mc_detection_consumer_log"}, strings.NewReader(string(queryJSON)))
+		_, err = r.elasticsearch.DeleteByQuery([]string{"download_playback_consumer_log"}, strings.NewReader(string(queryJSON)))
 		if err != nil {
 			return err
 		}

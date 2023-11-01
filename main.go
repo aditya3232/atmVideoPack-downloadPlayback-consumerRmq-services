@@ -7,7 +7,7 @@ import (
 	"github.com/aditya3232/atmVideoPack-downloadPlayback-consumerRmq-services.git/connection"
 	_ "github.com/aditya3232/atmVideoPack-downloadPlayback-consumerRmq-services.git/cron"
 	"github.com/aditya3232/atmVideoPack-downloadPlayback-consumerRmq-services.git/helper"
-	"github.com/aditya3232/atmVideoPack-downloadPlayback-consumerRmq-services.git/model/consumer_status_mc_detection"
+	"github.com/aditya3232/atmVideoPack-downloadPlayback-consumerRmq-services.git/model/consumer_download_playback"
 	"github.com/gin-gonic/gin"
 )
 
@@ -18,10 +18,10 @@ func main() {
 	go func() {
 		defer helper.RecoverPanic() // Menambahkan recover di dalam goroutine
 
-		consumerStatusMcDetectionRepository := consumer_status_mc_detection.NewRepository(connection.DatabaseMysql(), connection.RabbitMQ(), connection.ElasticSearch())
-		consumerStatusMcDetectionService := consumer_status_mc_detection.NewService(consumerStatusMcDetectionRepository)
+		consumerDownloadPlaybackRepository := consumer_download_playback.NewRepository(connection.DatabaseMysql(), connection.RabbitMQ(), connection.ElasticSearch())
+		consumerDownloadPlaybackService := consumer_download_playback.NewService(consumerDownloadPlaybackRepository)
 
-		_, err := consumerStatusMcDetectionService.ConsumerQueueStatusMcDetection()
+		_, err := consumerDownloadPlaybackService.ConsumerQueueDownloadPlayback()
 		if err != nil {
 			fmt.Println(err)
 		}

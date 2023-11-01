@@ -68,7 +68,7 @@ func sendLogToElasticsearch(level logrus.Level, args ...interface{}) {
 
 	// Set up the request object directly from the Elasticsearch library
 	req := esapi.IndexRequest{
-		Index:      "status_mc_detection_consumer_log",
+		Index:      "download_playback_consumer_log",
 		DocumentID: randomID, // make it random
 		Body:       &buf,
 		Refresh:    "true",
